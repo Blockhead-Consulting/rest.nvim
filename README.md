@@ -73,7 +73,7 @@ CLI. For more information on this, please see this [blog post](https://amartin.c
 		config = true,
 	},
 	{
-		"outragedline/rest.nvim",
+		"Blockhead-Consulting/rest.nvim",
 		ft = "http",
 		dependencies = { "luarocks.nvim" },
 		config = function()
