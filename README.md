@@ -23,10 +23,6 @@ and without wasting the precious resources of your machine.
 In addition to this, you can also write integrations with external HTTP clients, such as the postman
 CLI. For more information on this, please see this [blog post](https://amartin.codeberg.page/posts/first-look-at-thunder-rest/#third-party-clients).
 
-> [!IMPORTANT]
->
-> If you are facing issues, please [report them](https://github.com/outragedline/rest.nvim/issues/new) so we can work in a fix together :)
-
 ## Features
 
 -   Easy to use
