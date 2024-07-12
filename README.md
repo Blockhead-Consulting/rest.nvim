@@ -10,15 +10,9 @@
 
 [Features](#features) • [Install](#install) • [Usage](#usage) • [Contribute](#contribute)
 
-![Demo](https://github.com/rest-nvim/rest.nvim/assets/36456999/e9b536a5-f7b2-4cd8-88fb-fdc5409dd2a4)
+![Demo](https://github.com/outragedline/rest.nvim/assets/36456999/e9b536a5-f7b2-4cd8-88fb-fdc5409dd2a4)
 
 </div>
-
-# ⚠️ NOTICE
-
-Currently my focus is university and other projects, which is why I have no interest in rest.nvim and it's extremely difficult for me to work on bugs or features of a plugin that I have not used for a long time and that in the time that I've used it, it works perfectly on my computer. That said, I have looked for another maintainer for the project but I have never been able to find it, so I have decided that it's best to archive it and hope that in the future someone makes better software than me and is willing to maintain it.
-
----
 
 A very fast, powerful, extensible and asynchronous Neovim HTTP client written in Lua.
 
@@ -31,17 +25,17 @@ CLI. For more information on this, please see this [blog post](https://amartin.c
 
 > [!IMPORTANT]
 >
-> If you are facing issues, please [report them](https://github.com/rest-nvim/rest.nvim/issues/new) so we can work in a fix together :)
+> If you are facing issues, please [report them](https://github.com/outragedline/rest.nvim/issues/new) so we can work in a fix together :)
 
 ## Features
 
-- Easy to use
-- Friendly and organized request results window
-- Fast runtime with statistics about your request
-- Set custom pre-request and post-request hooks to dynamically interact with the data
-- Easily set environment variables based on the response to re-use the data later
-- Tree-sitter based parsing and syntax highlighting for speed and perfect accuracy
-- Possibility of using dynamic/environment variables and Lua scripting in HTTP files
+-   Easy to use
+-   Friendly and organized request results window
+-   Fast runtime with statistics about your request
+-   Set custom pre-request and post-request hooks to dynamically interact with the data
+-   Easily set environment variables based on the response to re-use the data later
+-   Tree-sitter based parsing and syntax highlighting for speed and perfect accuracy
+-   Possibility of using dynamic/environment variables and Lua scripting in HTTP files
 
 ## Install
 
@@ -51,19 +45,18 @@ CLI. For more information on this, please see this [blog post](https://amartin.c
 
 ### Dependencies
 
-- System-wide
-  - `Python` (only if you are using `packer.nvim` or `lazy.nvim` plus `luarocks.nvim` for the installation)
-  - `cURL` development headers (usually called `libcurl-dev` or `libcurl-devel` depending on your Linux distribution)
-- Optional [can be changed, see config below](#default-configuration)
-  - `jq`   (to format JSON output)
-  - `tidy` (to format HTML output)
+-   System-wide
+    -   `Python` (only if you are using `packer.nvim` or `lazy.nvim` plus `luarocks.nvim` for the installation)
+    -   `cURL` development headers (usually called `libcurl-dev` or `libcurl-devel` depending on your Linux distribution)
+-   Optional [can be changed, see config below](#default-configuration)
+    -   `jq` (to format JSON output)
+    -   `tidy` (to format HTML output)
 
 > [!NOTE]
 >
 > 1. Python will be unnecessary once `luarocks.nvim` gets rid of it as a dependency in the `go-away-python` branch.
->
 > 2. I will be working on making a binary rock of `Lua-cURL` so that the `cURL` development headers are not
-> necessary for the installation process.
+>    necessary for the installation process.
 
 ### [rocks.nvim](https://github.com/nvim-neorocks/rocks.nvim) (recommended)
 
@@ -74,22 +67,19 @@ CLI. For more information on this, please see this [blog post](https://amartin.c
 ### [lazy.nvim](https://github.com/folke/lazy.nvim)
 
 ```lua
-{
-  "vhyrro/luarocks.nvim",
-  priority = 1000,
-  config = true,
-  opts = {
-    rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" }
-  }
-},
-{
-  "rest-nvim/rest.nvim",
-  ft = "http",
-  dependencies = { "luarocks.nvim" },
-  config = function()
-    require("rest-nvim").setup()
-  end,
-}
+	{
+		"vhyrro/luarocks.nvim",
+		priority = 1000,
+		config = true,
+	},
+	{
+		"outragedline/rest.nvim",
+		ft = "http",
+		dependencies = { "luarocks.nvim" },
+		config = function()
+			require("rest-nvim").setup()
+		end,
+	},
 ```
 
 > [!NOTE]
@@ -97,18 +87,6 @@ CLI. For more information on this, please see this [blog post](https://amartin.c
 > There's a `build.lua` file in the repository that `lazy.nvim` will find and source to install the
 > luarocks dependencies for you by using `luarocks.nvim`. You don't need to specify a rock list
 > by yourself.
-
-### [packer.nvim](https://github.com/wbthomason/packer.nvim)
-
-```lua
-use {
-  "rest-nvim/rest.nvim",
-  rocks = { "lua-curl", "nvim-nio", "mimetypes", "xml2lua" },
-  config = function()
-    require("rest-nvim").setup()
-  end,
-}
-```
 
 ### Default configuration
 
@@ -119,7 +97,7 @@ get a good experience during autocompletion :)
 >
 > You can also check out `:h rest-nvim.config` for documentation.
 
-```lua
+````lua
 local default_config = {
   client = "curl",
   env_file = ".env",
@@ -201,7 +179,7 @@ local default_config = {
   ---@see vim.keymap.set
   keybinds = {},
 }
-```
+````
 
 ### Tree-Sitter parsing
 
@@ -235,14 +213,14 @@ keybinds = {
 ```
 
 You can still also use the legacy `<Plug>RestNvim` commands for mappings:
-- `<Plug>RestNvim`, run the request under the cursor
-- `<Plug>RestNvimLast`, re-run the last request
+
+-   `<Plug>RestNvim`, run the request under the cursor
+-   `<Plug>RestNvimLast`, re-run the last request
 
 > [!NOTE]
 >
 > 1. `<Plug>RestNvimPreview` has been removed, as we can no longer implement it with the current
 >    cURL implementation.
->
 > 2. The legacy `<Plug>` mappings will raise a deprecation warning suggesting you to switch to
 >    the `:Rest` command, as they are going to be completely removed in the next version.
 
@@ -254,11 +232,9 @@ request and run the <kbd>:Rest run</kbd> command.
 > [!NOTE]
 >
 > 1. You can find examples of use in the [tests](./tests) directory.
->
 > 2. `rest.nvim` supports multiple HTTP requests in one file. It selects the
 >    request in the current cursor line, no matters the position as long as
 >    the cursor is on a request tree-sitter node.
-
 
 ---
 
@@ -278,18 +254,17 @@ If running Ubuntu or Debian based systems you might need to run `ln -s $(which f
 
 Here is a preview of the extension working :)
 
-![telescope rest extension demo](https://github.com/rest-nvim/rest.nvim/assets/36456999/a810954f-b45c-44ee-854d-94039de8e2fc)
+![telescope rest extension demo](https://github.com/outragedline/rest.nvim/assets/36456999/a810954f-b45c-44ee-854d-94039de8e2fc)
 
 ### Mappings
 
-- <kbd>Enter</kbd>: Select Env file
-- <kbd>Ctrl + O</kbd>: Edit Env file
+-   <kbd>Enter</kbd>: Select Env file
+-   <kbd>Ctrl + O</kbd>: Edit Env file
 
 ### Config
 
-- `env_pattern`: For env file pattern
-- `env_edit_command`: For env file edit command
-
+-   `env_pattern`: For env file pattern
+-   `env_edit_command`: For env file edit command
 
 ### Select environment alternative
 
@@ -321,7 +296,6 @@ vim.keymap.set('n', ',q', function()
   end)
 end, { desc = '[q]uery envs' })
 ```
-
 
 ## Lualine
 
@@ -355,11 +329,11 @@ And don't worry, it will only show up under HTTP files.
 
 Here is a preview of the component working :)
 
-![lualine component demo](https://github.com/rest-nvim/rest.nvim/assets/81607010/cf4bb327-61aa-494c-84a5-82f5ee21004f)
+![lualine component demo](https://github.com/outragedline/rest.nvim/assets/81607010/cf4bb327-61aa-494c-84a5-82f5ee21004f)
 
 ## Contribute
 
-1. Fork it (https://github.com/rest-nvim/rest.nvim/fork)
+1. Fork it (https://github.com/outragedline/rest.nvim/fork)
 2. Create your feature branch (<kbd>git checkout -b my-new-feature</kbd>)
 3. Commit your changes (<kbd>git commit -am 'feat: add some feature'</kbd>)
 4. Push to the branch (<kbd>git push -u origin my-new-feature</kbd>)
@@ -377,10 +351,10 @@ dependencies.
 
 ## Related software
 
-- [vim-rest-console](https://github.com/diepm/vim-rest-console)
-- [Hurl](https://hurl.dev/)
-- [HTTPie](https://httpie.io/)
-- [httpYac](https://httpyac.github.io/)
+-   [vim-rest-console](https://github.com/diepm/vim-rest-console)
+-   [Hurl](https://hurl.dev/)
+-   [HTTPie](https://httpie.io/)
+-   [httpYac](https://httpyac.github.io/)
 
 ## License
 
